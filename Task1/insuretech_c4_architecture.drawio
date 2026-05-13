@@ -1,0 +1,246 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.3.6 Chrome/140.0.7339.249 Electron/38.8.0 Safari/537.36" version="29.3.6">
+  <diagram id="HtbjULAVF7wpoXWjJof8" name="Страница-1">
+    <mxGraphModel dx="983" dy="580" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="leg0" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;fontSize=11;fontStyle=1;" value="Легенда" vertex="1">
+          <mxGeometry height="20" width="80" x="40" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="K8s / контейнер" vertex="1">
+          <mxGeometry height="24" width="140" x="130" y="18" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="Health check" vertex="1">
+          <mxGeometry height="24" width="110" x="280" y="18" as="geometry" />
+        </mxCell>
+        <mxCell id="leg3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="База данных" vertex="1">
+          <mxGeometry height="24" width="110" x="400" y="18" as="geometry" />
+        </mxCell>
+        <mxCell id="leg4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" value="Внешний пользователь" vertex="1">
+          <mxGeometry height="24" width="160" x="520" y="18" as="geometry" />
+        </mxCell>
+        <mxCell id="browser" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" value="&lt;b&gt;Браузер пользователя&lt;/b&gt;&lt;br/&gt;HTTPS / веб-трафик" vertex="1">
+          <mxGeometry height="54" width="200" x="410" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="gslb" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" value="&lt;b&gt;GSLB&lt;/b&gt;&lt;br/&gt;Global Server Load Balancer · DNS Anycast" vertex="1">
+          <mxGeometry height="48" width="333" x="390" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="gslb_note" parent="1" style="text;html=1;strokeColor=#9673a6;fillColor=#f3e8ff;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;fontSize=10;dashed=1;" value="Active-Active: трафик распределяется по обоим ЦОДам одновременно. GSLB опрашивает HC каждые 10 с, TTL DNS = 10 с. При потере ЦОД переключение за &lt; 30 с." vertex="1">
+          <mxGeometry height="68" width="260" x="840" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="e_br_gslb" edge="1" parent="1" source="browser" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="gslb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dc1" parent="1" style="swimlane;startSize=28;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=1;rounded=1;" value="ЦОД 1 / Зона доступности 1" vertex="1">
+          <mxGeometry height="800" width="400" x="40" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="ing1" parent="dc1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="&lt;b&gt;Ingress / L7 LB (ЦОД 1)&lt;/b&gt;&lt;br/&gt;Nginx Ingress · TLS termination" vertex="1">
+          <mxGeometry height="50" width="240" x="80" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="hc_ing1" parent="dc1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;" value="HC /healthz" vertex="1">
+          <mxGeometry height="24" width="60" x="330" y="62" as="geometry" />
+        </mxCell>
+        <mxCell id="e_hc_ing1" edge="1" parent="dc1" source="ing1" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;strokeColor=#82b366;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="hc_ing1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="k8s1" parent="dc1" style="swimlane;startSize=24;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=1;rounded=1;dashed=0;" value="K8s кластер 1 (независимый)" vertex="1">
+          <mxGeometry height="310" width="360" x="20" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="k8s1_note" parent="k8s1" style="text;html=1;strokeColor=#6c8ebf;fillColor=#EAF3FF;align=left;verticalAlign=top;spacingLeft=6;overflow=hidden;fontSize=9;dashed=1;" value="Независимые кластеры выбраны, т.к.:&lt;br&gt;— нет задержек stretched cluster&lt;br&gt;— изоляция отказов между ЦОД&lt;br&gt;— независимое обновление" vertex="1">
+          <mxGeometry height="68" width="340" x="10" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ns1" parent="k8s1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="&lt;b&gt;InsureTech namespace&lt;/b&gt;&lt;br/&gt;Deployment · HPA (авто-масштабирование)&lt;br/&gt;3–10 pod реплик · RollingUpdate" vertex="1">
+          <mxGeometry height="60" width="240" x="20" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="hc_ns1" parent="k8s1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;" value="HC /health" vertex="1">
+          <mxGeometry height="24" width="70" x="276" y="124" as="geometry" />
+        </mxCell>
+        <mxCell id="e_hc_ns1" edge="1" parent="k8s1" source="ns1" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;strokeColor=#82b366;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="hc_ns1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hpa1" parent="k8s1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="&lt;b&gt;Горизонтальное масштабирование&lt;/b&gt;&lt;br/&gt;HPA по CPU/RPS · PodDisruptionBudget" vertex="1">
+          <mxGeometry height="44" width="240" x="20" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="router1" parent="k8s1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="&lt;b&gt;Shard Router&lt;/b&gt;&lt;br/&gt;hash(user_id) → shard" vertex="1">
+          <mxGeometry height="38" width="180" x="20" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="e_ns1_router1" edge="1" parent="k8s1" source="ns1" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="router1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oCRSUGzLXLJm876WYTdA-14" parent="k8s1" style="shape=image;verticalLabelPosition=bottom;verticalAlign=top;imageAspect=0;aspect=fixed;image=data:image/svg+xml,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIiBmaWxsPSJub25lIj4mI3hhOzxwYXRoIGQ9Ik0wIDE2QzAgNy4xNjM0NCA3LjE2MzQ0IDAgMTYgMFYwQzI0LjgzNjYgMCAzMiA3LjE2MzQ0IDMyIDE2VjE2QzMyIDI0LjgzNjYgMjQuODM2NiAzMiAxNiAzMlYzMkM3LjE2MzQ0IDMyIDAgMjQuODM2NiAwIDE2VjE2WiIgZmlsbD0iIzUyODJGRiIvPiYjeGE7PHBhdGggZD0iTTExLjk5NSAyNEw3LjAwMDk4IDE3LjczOEw4Ljc4MTk4IDkuOTI3TDE2IDYuNDUzTDIzLjIxOCA5LjkyOEwyNC45OTkgMTcuNzM5TDIwLjAwNSAyNEgxMS45OTVaTTIwIDEzLjE5NkwxNS45OTkgMTAuODk5TDEyIDEzLjE5NlYxOC4xTDE2IDIwLjQwMUwyMCAxOC4xVjEzLjE5NlpNMTguNzggMTMuODk2SDE4Ljc4N0wxNiAxNS40OTlMMTMuMjE0IDEzLjg5NUgxMy4yMTlMMTUuOTk5IDEyLjI5OUwxOC43OCAxMy44OTZaIiBmaWxsPSJ3aGl0ZSIvPiYjeGE7PC9zdmc+;" value="" vertex="1">
+          <mxGeometry height="32" width="32" x="310" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="patroni_a" parent="dc1" style="swimlane;startSize=36;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;fontStyle=1;rounded=1;" value="VM 1 — Patroni cluster (Shard A)&#xa;user_id % 2 == 0" vertex="1">
+          <mxGeometry height="140" width="360" x="20" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="pg_a_leader" parent="patroni_a" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="&lt;b&gt;PG Leader&lt;/b&gt;&lt;br/&gt;Shard A" vertex="1">
+          <mxGeometry height="80" width="100" x="10" y="46" as="geometry" />
+        </mxCell>
+        <mxCell id="pg_a_r1" parent="patroni_a" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="PG Replica&lt;br/&gt;Shard A" vertex="1">
+          <mxGeometry height="80" width="100" x="130" y="46" as="geometry" />
+        </mxCell>
+        <mxCell id="pg_a_r2" parent="patroni_a" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="PG Replica&lt;br/&gt;Shard A" vertex="1">
+          <mxGeometry height="80" width="100" x="250" y="46" as="geometry" />
+        </mxCell>
+        <mxCell id="hc_db1" parent="patroni_a" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;" value="HC Patroni" vertex="1">
+          <mxGeometry height="24" width="60" x="330" y="76" as="geometry" />
+        </mxCell>
+        <mxCell id="e_hc_db1" edge="1" parent="patroni_a" source="pg_a_leader" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;strokeColor=#82b366;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="hc_db1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oCRSUGzLXLJm876WYTdA-16" parent="patroni_a" style="shape=image;verticalLabelPosition=bottom;verticalAlign=top;imageAspect=0;aspect=fixed;image=data:image/svg+xml,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIiBmaWxsPSJub25lIj4mI3hhOzxwYXRoIGQ9Ik0wIDE2QzAgNy4xNjM0NCA3LjE2MzQ0IDAgMTYgMFYwQzI0LjgzNjYgMCAzMiA3LjE2MzQ0IDMyIDE2VjE2QzMyIDI0LjgzNjYgMjQuODM2NiAzMiAxNiAzMlYzMkM3LjE2MzQ0IDMyIDAgMjQuODM2NiAwIDE2VjE2WiIgZmlsbD0iIzUyODJGRiIvPiYjeGE7PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMyA4SDE4QzIxLjMgOCAyNCAxMC43IDI0IDE0VjI0SDIwVjIwSDIyVjE5SDE4LjZDMTUuNSAxOSAxMyAxNi41IDEzIDEzLjRWOFpNMTkgMTdIMjFWMTVIMTlWMTdaTTEyIDkuMDk5OThWMTMuNEMxMiAxNi44IDE0LjYgMTkuNyAxOCAyMC4xVjIwLjZDMTggMjIgMTUuOCAyMy4xIDEzIDIzLjFDMTAuMiAyMy4xIDggMjIgOCAyMC42VjExLjZDOCAxMC4zIDkuNyA5LjI5OTk4IDEyIDkuMDk5OThaIiBmaWxsPSJ3aGl0ZSIvPiYjeGE7PC9zdmc+;" value="" vertex="1">
+          <mxGeometry height="32" width="32" x="310" y="2" as="geometry" />
+        </mxCell>
+        <mxCell id="bk1" parent="dc1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="WAL-G backup → S3 · RPO &lt; 15 мин · RTO &lt; 30 мин" vertex="1">
+          <mxGeometry height="30" width="360" x="20" y="608" as="geometry" />
+        </mxCell>
+        <mxCell id="etcd1" parent="dc1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" value="etcd cluster (3 узла) — Patroni leader election" vertex="1">
+          <mxGeometry height="34" width="360" x="20" y="656" as="geometry" />
+        </mxCell>
+        <mxCell id="vscale1" parent="dc1" style="text;html=1;strokeColor=#d6b656;fillColor=#fff2cc;align=center;verticalAlign=top;spacingLeft=6;overflow=hidden;fontSize=9;dashed=1;rounded=1;" value="Вертикальное масштабирование БД: VPA увеличивает CPU/RAM Patroni-нод &lt;br&gt;при росте нагрузки" vertex="1">
+          <mxGeometry height="36" width="360" x="20" y="702" as="geometry" />
+        </mxCell>
+        <mxCell id="e_ing1_ns1" edge="1" parent="dc1" source="ing1" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="ns1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_router1_pa" edge="1" parent="dc1" source="router1" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="patroni_a">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="120" y="420" />
+              <mxPoint x="120" y="450" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_tcp1" edge="1" parent="dc1" source="k8s1" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=9;" target="patroni_a" value="TCP">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oCRSUGzLXLJm876WYTdA-9" parent="dc1" style="shape=image;verticalLabelPosition=bottom;verticalAlign=top;imageAspect=0;aspect=fixed;image=data:image/svg+xml,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIiBmaWxsPSJub25lIj4mI3hhOzxwYXRoIGQ9Ik0wIDE2QzAgNy4xNjM0NCA3LjE2MzQ0IDAgMTYgMEMyNC44MzY2IDAgMzIgNy4xNjM0NCAzMiAxNkMzMiAyNC44MzY2IDI0LjgzNjYgMzIgMTYgMzJDNy4xNjM0NCAzMiAwIDI0LjgzNjYgMCAxNloiIGZpbGw9IiM1MjgyRkYiLz4mI3hhOzxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTYgMjRWMjMuOTg3QzE1LjkwMTcgMjMuOTg3MyAxNS44MDQzIDIzLjk2ODEgMTUuNzEzNCAyMy45MzA3QzE1LjYyMjUgMjMuODkzMyAxNS41Mzk4IDIzLjgzODQgMTUuNDcwMSAyMy43NjlDMTUuNDAwNSAyMy42OTk2IDE1LjM0NTIgMjMuNjE3MiAxNS4zMDc0IDIzLjUyNjRDMTUuMjY5NiAyMy40MzU2IDE1LjI1MDEgMjMuMzM4MyAxNS4yNSAyMy4yNFYyMC43NkMxNS4yNSAyMC4zNDcgMTUuNTg1IDIwLjAxMyAxNiAyMC4wMTNDMTYuNDEzIDIwLjAxMyAxNi43NSAyMC4zNDcgMTYuNzUgMjAuNzZWMjIuNTQ3QzE4LjM1NTEgMjIuMzU5IDE5LjgzNTMgMjEuNTg4NiAyMC45MTAzIDIwLjM4MTlDMjEuOTg1MiAxOS4xNzUyIDIyLjU4IDE3LjYxNiAyMi41ODIgMTZDMjIuNTgyIDE0LjQ0IDIyLjAzMiAxMyAyMS4xMTggMTEuODY3QzIwLjkxNDEgMTEuOTU5MSAyMC42OTIzIDEyLjAwNDQgMjAuNDY4NiAxMS45OTk3QzIwLjI0NSAxMS45OTQ5IDIwLjAyNTMgMTEuOTQwMiAxOS44MjU1IDExLjgzOTVDMTkuNjI1NyAxMS43Mzg5IDE5LjQ1MSAxMS41OTQ4IDE5LjMxNDEgMTEuNDE3OUMxOS4xNzczIDExLjI0MSAxOS4wODE3IDExLjAzNTcgMTkuMDM0NCAxMC44MTdDMTguOTg3MSAxMC41OTg0IDE4Ljk4OTMgMTAuMzcyIDE5LjA0MDkgMTAuMTU0M0MxOS4wOTI0IDkuOTM2NjQgMTkuMTkyIDkuNzMzMjYgMTkuMzMyMyA5LjU1OTA1QzE5LjQ3MjcgOS4zODQ4NSAxOS42NTAyIDkuMjQ0MjMgMTkuODUxOCA5LjE0NzVDMjAuMDUzNSA5LjA1MDc3IDIwLjI3NDMgOS4wMDAzNyAyMC40OTggOUMyMC43MTI4IDguOTk5MTcgMjAuOTI1MyA5LjA0NDU4IDIxLjEyMSA5LjEzMzE1QzIxLjMxNjcgOS4yMjE3MiAyMS40OTExIDkuMzUxMzggMjEuNjMyMyA5LjUxMzMyQzIxLjc3MzQgOS42NzUyNSAyMS44NzgxIDkuODY1NjcgMjEuOTM5MSAxMC4wNzE2QzIyLjAwMDEgMTAuMjc3NiAyMi4wMTYxIDEwLjQ5NDMgMjEuOTg2IDEwLjcwN0MyMy4yODUyIDEyLjE2MzcgMjQuMDAxOSAxNC4wNDgxIDIzLjk5OSAxNkMyMy45OTkgMjAuNDEzIDIwLjQxNCAyNCAxNiAyNFpNOS44OCAyMS40MjdDOS44OCAyMS4zMzMgOS44ODYgMjEuMjUzIDkuOSAyMS4xNzNDOC42NzIyNCAxOS43MjkxIDcuOTk4NjkgMTcuODk1MyA4IDE2QzggMTEuNTg3IDExLjU4NSA4IDE1Ljk5OSA4VjguMDEzQzE2LjE5ODggOC4wMTU2MyAxNi4zODk2IDguMDk2ODYgMTYuNTMgOC4yMzkxQzE2LjY3MDMgOC4zODEzNSAxNi43NDkgOC41NzMxNiAxNi43NDkgOC43NzNWMTEuMjRDMTYuNzQ5IDExLjQzODkgMTYuNjcgMTEuNjI5NyAxNi41MjkzIDExLjc3MDNDMTYuMzg4NyAxMS45MTEgMTYuMTk3OSAxMS45OSAxNS45OTkgMTEuOTlDMTUuODAwMSAxMS45OSAxNS42MDkzIDExLjkxMSAxNS40Njg3IDExLjc3MDNDMTUuMzI4IDExLjYyOTcgMTUuMjQ5IDExLjQzODkgMTUuMjQ5IDExLjI0TDE1LjI0NyA5LjQ1M0MxMy42NDIxIDkuNjQxMDggMTIuMTYyMSAxMC40MTE1IDExLjA4NzUgMTEuNjE4M0MxMC4wMTI5IDEyLjgyNSA5LjQxODUxIDE0LjM4NDIgOS40MTcgMTZDOS40MTcgMTcuNTIgOS45MzMgMTguOTIgMTAuNzk5IDIwLjA0QzExLjAwMzkgMTkuOTUyNyAxMS4yMjU3IDE5LjkxMjIgMTEuNDQ4MiAxOS45MjEzQzExLjY3MDcgMTkuOTMwNCAxMS44ODg0IDE5Ljk4ODkgMTIuMDg1NSAyMC4wOTI3QzEyLjI4MjYgMjAuMTk2NCAxMi40NTQxIDIwLjM0MjcgMTIuNTg3NiAyMC41MjFDMTIuNzIxMSAyMC42OTkzIDEyLjgxMzIgMjAuOTA1MSAxMi44NTcyIDIxLjEyMzRDMTIuOTAxMyAyMS4zNDE3IDEyLjg5NjEgMjEuNTY3MSAxMi44NDIyIDIxLjc4MzJDMTIuNzg4MyAyMS45OTkzIDEyLjY4NjkgMjIuMjAwNiAxMi41NDU1IDIyLjM3MjdDMTIuNDA0IDIyLjU0NDcgMTIuMjI2IDIyLjY4MzEgMTIuMDI0NSAyMi43Nzc4QzExLjgyMjkgMjIuODcyNCAxMS42MDI3IDIyLjkyMSAxMS4zOCAyMi45MkMxMC45ODMxIDIyLjkyMDggMTAuNjAyMiAyMi43NjQgMTAuMzIwOSAyMi40ODRDMTAuMDM5NyAyMi4yMDQxIDkuODgxMDYgMjEuODIzOSA5Ljg4IDIxLjQyN1pNMTMuNSAxNkMxMy40OTQyIDE1LjY2NzYgMTMuNTU0OCAxNS4zMzczIDEzLjY3ODIgMTUuMDI4NkMxMy44MDE1IDE0LjcxOTggMTMuOTg1MyAxNC40Mzg4IDE0LjIxODYgMTQuMjAyQzE0LjQ1MTkgMTMuOTY1MSAxNC43MzAxIDEzLjc3NzEgMTUuMDM3IDEzLjY0OTFDMTUuMzQzOCAxMy41MjExIDE1LjY3MzEgMTMuNDU1NiAxNi4wMDU2IDEzLjQ1NjRDMTYuMzM4MSAxMy40NTcyIDE2LjY2NzEgMTMuNTI0MyAxNi45NzMzIDEzLjY1MzhDMTcuMjc5NSAxMy43ODMzIDE3LjU1NjkgMTMuOTcyNSAxNy43ODkgMTQuMjEwNUMxOC4wMjEyIDE0LjQ0ODUgMTguMjAzNiAxNC43MzA0IDE4LjMyNTUgMTUuMDM5N0MxOC40NDc0IDE1LjM0OTEgMTguNTA2NCAxNS42Nzk2IDE4LjQ5OSAxNi4wMTJDMTguNDg0NCAxNi42NjYzIDE4LjIxMzkgMTcuMjg4OCAxNy43NDU1IDE3Ljc0NThDMTcuMjc3IDE4LjIwMjggMTYuNjQ4MSAxOC40NTc5IDE1Ljk5MzYgMTguNDU2NEMxNS4zMzkyIDE4LjQ1NDggMTQuNzExNCAxOC4xOTY3IDE0LjI0NTIgMTcuNzM3NEMxMy43NzkgMTcuMjc4MSAxMy41MTE0IDE2LjY1NDMgMTMuNSAxNloiIGZpbGw9IndoaXRlIi8+JiN4YTs8L3N2Zz4=;" value="" vertex="1">
+          <mxGeometry height="32" width="32" x="90" y="59" as="geometry" />
+        </mxCell>
+        <mxCell id="oCRSUGzLXLJm876WYTdA-18" parent="dc1" style="shape=image;verticalLabelPosition=bottom;verticalAlign=top;imageAspect=0;aspect=fixed;image=data:image/svg+xml,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIiBmaWxsPSJub25lIj4mI3hhOzxwYXRoIGQ9Ik0wIDE2QzAgNy4xNjM0NCA3LjE2MzQ0IDAgMTYgMFYwQzI0LjgzNjYgMCAzMiA3LjE2MzQ0IDMyIDE2VjE2QzMyIDI0LjgzNjYgMjQuODM2NiAzMiAxNiAzMlYzMkM3LjE2MzQ0IDMyIDAgMjQuODM2NiAwIDE2VjE2WiIgZmlsbD0iIzUyODJGRiIvPiYjeGE7PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0yMiA4QzIyIDcuNCAyMS42IDcgMjEgN0gxMUMxMC40IDcgMTAgNy40IDEwIDhWMTBIMjJWOFpNMjMgMTJDMjMgMTEuNCAyMi42IDExIDIyIDExSDEwQzkuNCAxMSA5IDExLjQgOSAxMlYxNEgyM1YxMlpNOSAxNUgyM0MyMy41IDE1IDI0IDE1LjQgMjQgMTZWMjJDMjQgMjIuNiAyMy42IDIzIDIzIDIzSDlDOC40IDIzIDggMjIuNiA4IDIyVjE2QzggMTUuNCA4LjQgMTUgOSAxNVpNMTQgMjBIMThDMTguNSAyMCAxOSAxOS41IDE5IDE5QzE5IDE4LjQgMTguNiAxOCAxOCAxOEgxNEMxMy40IDE4IDEzIDE4LjQgMTMgMTlDMTMgMTkuNiAxMy40IDIwIDE0IDIwWiIgZmlsbD0id2hpdGUiLz4mI3hhOzwvc3ZnPg==;" value="" vertex="1">
+          <mxGeometry height="32" width="32" x="358" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="dc2" parent="1" style="swimlane;startSize=28;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=1;rounded=1;" value="ЦОД 2 / Зона доступности 2" vertex="1">
+          <mxGeometry height="800" width="400" x="510" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="ing2" parent="dc2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="&lt;b&gt;Ingress / L7 LB (ЦОД 2)&lt;/b&gt;&lt;br/&gt;Nginx Ingress · TLS termination" vertex="1">
+          <mxGeometry height="50" width="240" x="80" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="hc_ing2" parent="dc2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;" value="HC /healthz" vertex="1">
+          <mxGeometry height="24" width="60" x="10" y="62" as="geometry" />
+        </mxCell>
+        <mxCell id="e_hc_ing2" edge="1" parent="dc2" source="ing2" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;strokeColor=#82b366;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="hc_ing2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="k8s2" parent="dc2" style="swimlane;startSize=24;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=1;rounded=1;" value="K8s кластер 2 (независимый)" vertex="1">
+          <mxGeometry height="310" width="360" x="20" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="k8s2_note" parent="k8s2" style="text;html=1;strokeColor=#6c8ebf;fillColor=#EAF3FF;align=left;verticalAlign=top;spacingLeft=6;overflow=hidden;fontSize=9;dashed=1;" value="Идентичная конфигурация кластера 1.&#xa;Failover: GSLB переключает DNS при потере HC за &lt; 30 с." vertex="1">
+          <mxGeometry height="48" width="340" x="10" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ns2" parent="k8s2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="&lt;b&gt;InsureTech namespace&lt;/b&gt;&lt;br/&gt;Deployment · HPA (авто-масштабирование)&lt;br/&gt;3–10 pod реплик · RollingUpdate" vertex="1">
+          <mxGeometry height="60" width="240" x="100" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="hc_ns2" parent="k8s2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;" value="HC /health" vertex="1">
+          <mxGeometry height="24" width="70" x="10" y="114" as="geometry" />
+        </mxCell>
+        <mxCell id="e_hc_ns2" edge="1" parent="k8s2" source="ns2" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;strokeColor=#82b366;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="hc_ns2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hpa2" parent="k8s2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="&lt;b&gt;Горизонтальное масштабирование&lt;/b&gt;&lt;br/&gt;HPA по CPU/RPS · PodDisruptionBudget" vertex="1">
+          <mxGeometry height="44" width="240" x="100" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="router2" parent="k8s2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="&lt;b&gt;Shard Router&lt;/b&gt;&lt;br/&gt;hash(user_id) → shard" vertex="1">
+          <mxGeometry height="38" width="180" x="160" y="252" as="geometry" />
+        </mxCell>
+        <mxCell id="e_ns2_router2" edge="1" parent="k8s2" source="ns2" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="router2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oCRSUGzLXLJm876WYTdA-15" parent="k8s2" style="shape=image;verticalLabelPosition=bottom;verticalAlign=top;imageAspect=0;aspect=fixed;image=data:image/svg+xml,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIiBmaWxsPSJub25lIj4mI3hhOzxwYXRoIGQ9Ik0wIDE2QzAgNy4xNjM0NCA3LjE2MzQ0IDAgMTYgMFYwQzI0LjgzNjYgMCAzMiA3LjE2MzQ0IDMyIDE2VjE2QzMyIDI0LjgzNjYgMjQuODM2NiAzMiAxNiAzMlYzMkM3LjE2MzQ0IDMyIDAgMjQuODM2NiAwIDE2VjE2WiIgZmlsbD0iIzUyODJGRiIvPiYjeGE7PHBhdGggZD0iTTExLjk5NSAyNEw3LjAwMDk4IDE3LjczOEw4Ljc4MTk4IDkuOTI3TDE2IDYuNDUzTDIzLjIxOCA5LjkyOEwyNC45OTkgMTcuNzM5TDIwLjAwNSAyNEgxMS45OTVaTTIwIDEzLjE5NkwxNS45OTkgMTAuODk5TDEyIDEzLjE5NlYxOC4xTDE2IDIwLjQwMUwyMCAxOC4xVjEzLjE5NlpNMTguNzggMTMuODk2SDE4Ljc4N0wxNiAxNS40OTlMMTMuMjE0IDEzLjg5NUgxMy4yMTlMMTUuOTk5IDEyLjI5OUwxOC43OCAxMy44OTZaIiBmaWxsPSJ3aGl0ZSIvPiYjeGE7PC9zdmc+;" value="" vertex="1">
+          <mxGeometry height="32" width="32" x="308" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="patroni_b" parent="dc2" style="swimlane;startSize=36;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;fontStyle=1;rounded=1;" value="VM 2 — Patroni cluster (Shard B)&#xa;user_id % 2 == 1" vertex="1">
+          <mxGeometry height="140" width="360" x="20" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="pg_b_leader" parent="patroni_b" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="&lt;b&gt;PG Leader&lt;/b&gt;&lt;br/&gt;Shard B" vertex="1">
+          <mxGeometry height="80" width="100" x="10" y="46" as="geometry" />
+        </mxCell>
+        <mxCell id="pg_b_r1" parent="patroni_b" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="PG Replica&lt;br/&gt;Shard B" vertex="1">
+          <mxGeometry height="80" width="100" x="130" y="46" as="geometry" />
+        </mxCell>
+        <mxCell id="pg_b_r2" parent="patroni_b" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="PG Replica&lt;br/&gt;Shard B" vertex="1">
+          <mxGeometry height="80" width="100" x="250" y="46" as="geometry" />
+        </mxCell>
+        <mxCell id="hc_db2" parent="patroni_b" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;" value="HC Patroni" vertex="1">
+          <mxGeometry height="24" width="60" x="10" y="76" as="geometry" />
+        </mxCell>
+        <mxCell id="e_hc_db2" edge="1" parent="patroni_b" source="pg_b_leader" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;strokeColor=#82b366;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="hc_db2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oCRSUGzLXLJm876WYTdA-17" parent="patroni_b" style="shape=image;verticalLabelPosition=bottom;verticalAlign=top;imageAspect=0;aspect=fixed;image=data:image/svg+xml,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIiBmaWxsPSJub25lIj4mI3hhOzxwYXRoIGQ9Ik0wIDE2QzAgNy4xNjM0NCA3LjE2MzQ0IDAgMTYgMFYwQzI0LjgzNjYgMCAzMiA3LjE2MzQ0IDMyIDE2VjE2QzMyIDI0LjgzNjYgMjQuODM2NiAzMiAxNiAzMlYzMkM3LjE2MzQ0IDMyIDAgMjQuODM2NiAwIDE2VjE2WiIgZmlsbD0iIzUyODJGRiIvPiYjeGE7PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMyA4SDE4QzIxLjMgOCAyNCAxMC43IDI0IDE0VjI0SDIwVjIwSDIyVjE5SDE4LjZDMTUuNSAxOSAxMyAxNi41IDEzIDEzLjRWOFpNMTkgMTdIMjFWMTVIMTlWMTdaTTEyIDkuMDk5OThWMTMuNEMxMiAxNi44IDE0LjYgMTkuNyAxOCAyMC4xVjIwLjZDMTggMjIgMTUuOCAyMy4xIDEzIDIzLjFDMTAuMiAyMy4xIDggMjIgOCAyMC42VjExLjZDOCAxMC4zIDkuNyA5LjI5OTk4IDEyIDkuMDk5OThaIiBmaWxsPSJ3aGl0ZSIvPiYjeGE7PC9zdmc+;" value="" vertex="1">
+          <mxGeometry height="32" width="32" x="309" y="2" as="geometry" />
+        </mxCell>
+        <mxCell id="bk2" parent="dc2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="WAL-G backup → S3 · RPO &lt; 15 мин · RTO &lt; 30 мин" vertex="1">
+          <mxGeometry height="30" width="360" x="20" y="608" as="geometry" />
+        </mxCell>
+        <mxCell id="etcd2" parent="dc2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" value="etcd cluster (3 узла) — Patroni leader election" vertex="1">
+          <mxGeometry height="34" width="360" x="20" y="656" as="geometry" />
+        </mxCell>
+        <mxCell id="vscale2" parent="dc2" style="text;html=1;strokeColor=#d6b656;fillColor=#fff2cc;align=center;verticalAlign=top;spacingLeft=6;overflow=hidden;fontSize=9;dashed=1;rounded=1;" value="Вертикальное масштабирование БД: VPA увеличивает CPU/RAM Patroni-нод &lt;br&gt;при росте нагрузки" vertex="1">
+          <mxGeometry height="36" width="360" x="20" y="702" as="geometry" />
+        </mxCell>
+        <mxCell id="e_ing2_ns2" edge="1" parent="dc2" source="ing2" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="ns2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_tcp2" edge="1" parent="dc2" source="k8s2" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=9;" target="patroni_b" value="TCP">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oCRSUGzLXLJm876WYTdA-10" parent="dc2" style="shape=image;verticalLabelPosition=bottom;verticalAlign=top;imageAspect=0;aspect=fixed;image=data:image/svg+xml,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIiBmaWxsPSJub25lIj4mI3hhOzxwYXRoIGQ9Ik0wIDE2QzAgNy4xNjM0NCA3LjE2MzQ0IDAgMTYgMEMyNC44MzY2IDAgMzIgNy4xNjM0NCAzMiAxNkMzMiAyNC44MzY2IDI0LjgzNjYgMzIgMTYgMzJDNy4xNjM0NCAzMiAwIDI0LjgzNjYgMCAxNloiIGZpbGw9IiM1MjgyRkYiLz4mI3hhOzxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTYgMjRWMjMuOTg3QzE1LjkwMTcgMjMuOTg3MyAxNS44MDQzIDIzLjk2ODEgMTUuNzEzNCAyMy45MzA3QzE1LjYyMjUgMjMuODkzMyAxNS41Mzk4IDIzLjgzODQgMTUuNDcwMSAyMy43NjlDMTUuNDAwNSAyMy42OTk2IDE1LjM0NTIgMjMuNjE3MiAxNS4zMDc0IDIzLjUyNjRDMTUuMjY5NiAyMy40MzU2IDE1LjI1MDEgMjMuMzM4MyAxNS4yNSAyMy4yNFYyMC43NkMxNS4yNSAyMC4zNDcgMTUuNTg1IDIwLjAxMyAxNiAyMC4wMTNDMTYuNDEzIDIwLjAxMyAxNi43NSAyMC4zNDcgMTYuNzUgMjAuNzZWMjIuNTQ3QzE4LjM1NTEgMjIuMzU5IDE5LjgzNTMgMjEuNTg4NiAyMC45MTAzIDIwLjM4MTlDMjEuOTg1MiAxOS4xNzUyIDIyLjU4IDE3LjYxNiAyMi41ODIgMTZDMjIuNTgyIDE0LjQ0IDIyLjAzMiAxMyAyMS4xMTggMTEuODY3QzIwLjkxNDEgMTEuOTU5MSAyMC42OTIzIDEyLjAwNDQgMjAuNDY4NiAxMS45OTk3QzIwLjI0NSAxMS45OTQ5IDIwLjAyNTMgMTEuOTQwMiAxOS44MjU1IDExLjgzOTVDMTkuNjI1NyAxMS43Mzg5IDE5LjQ1MSAxMS41OTQ4IDE5LjMxNDEgMTEuNDE3OUMxOS4xNzczIDExLjI0MSAxOS4wODE3IDExLjAzNTcgMTkuMDM0NCAxMC44MTdDMTguOTg3MSAxMC41OTg0IDE4Ljk4OTMgMTAuMzcyIDE5LjA0MDkgMTAuMTU0M0MxOS4wOTI0IDkuOTM2NjQgMTkuMTkyIDkuNzMzMjYgMTkuMzMyMyA5LjU1OTA1QzE5LjQ3MjcgOS4zODQ4NSAxOS42NTAyIDkuMjQ0MjMgMTkuODUxOCA5LjE0NzVDMjAuMDUzNSA5LjA1MDc3IDIwLjI3NDMgOS4wMDAzNyAyMC40OTggOUMyMC43MTI4IDguOTk5MTcgMjAuOTI1MyA5LjA0NDU4IDIxLjEyMSA5LjEzMzE1QzIxLjMxNjcgOS4yMjE3MiAyMS40OTExIDkuMzUxMzggMjEuNjMyMyA5LjUxMzMyQzIxLjc3MzQgOS42NzUyNSAyMS44NzgxIDkuODY1NjcgMjEuOTM5MSAxMC4wNzE2QzIyLjAwMDEgMTAuMjc3NiAyMi4wMTYxIDEwLjQ5NDMgMjEuOTg2IDEwLjcwN0MyMy4yODUyIDEyLjE2MzcgMjQuMDAxOSAxNC4wNDgxIDIzLjk5OSAxNkMyMy45OTkgMjAuNDEzIDIwLjQxNCAyNCAxNiAyNFpNOS44OCAyMS40MjdDOS44OCAyMS4zMzMgOS44ODYgMjEuMjUzIDkuOSAyMS4xNzNDOC42NzIyNCAxOS43MjkxIDcuOTk4NjkgMTcuODk1MyA4IDE2QzggMTEuNTg3IDExLjU4NSA4IDE1Ljk5OSA4VjguMDEzQzE2LjE5ODggOC4wMTU2MyAxNi4zODk2IDguMDk2ODYgMTYuNTMgOC4yMzkxQzE2LjY3MDMgOC4zODEzNSAxNi43NDkgOC41NzMxNiAxNi43NDkgOC43NzNWMTEuMjRDMTYuNzQ5IDExLjQzODkgMTYuNjcgMTEuNjI5NyAxNi41MjkzIDExLjc3MDNDMTYuMzg4NyAxMS45MTEgMTYuMTk3OSAxMS45OSAxNS45OTkgMTEuOTlDMTUuODAwMSAxMS45OSAxNS42MDkzIDExLjkxMSAxNS40Njg3IDExLjc3MDNDMTUuMzI4IDExLjYyOTcgMTUuMjQ5IDExLjQzODkgMTUuMjQ5IDExLjI0TDE1LjI0NyA5LjQ1M0MxMy42NDIxIDkuNjQxMDggMTIuMTYyMSAxMC40MTE1IDExLjA4NzUgMTEuNjE4M0MxMC4wMTI5IDEyLjgyNSA5LjQxODUxIDE0LjM4NDIgOS40MTcgMTZDOS40MTcgMTcuNTIgOS45MzMgMTguOTIgMTAuNzk5IDIwLjA0QzExLjAwMzkgMTkuOTUyNyAxMS4yMjU3IDE5LjkxMjIgMTEuNDQ4MiAxOS45MjEzQzExLjY3MDcgMTkuOTMwNCAxMS44ODg0IDE5Ljk4ODkgMTIuMDg1NSAyMC4wOTI3QzEyLjI4MjYgMjAuMTk2NCAxMi40NTQxIDIwLjM0MjcgMTIuNTg3NiAyMC41MjFDMTIuNzIxMSAyMC42OTkzIDEyLjgxMzIgMjAuOTA1MSAxMi44NTcyIDIxLjEyMzRDMTIuOTAxMyAyMS4zNDE3IDEyLjg5NjEgMjEuNTY3MSAxMi44NDIyIDIxLjc4MzJDMTIuNzg4MyAyMS45OTkzIDEyLjY4NjkgMjIuMjAwNiAxMi41NDU1IDIyLjM3MjdDMTIuNDA0IDIyLjU0NDcgMTIuMjI2IDIyLjY4MzEgMTIuMDI0NSAyMi43Nzc4QzExLjgyMjkgMjIuODcyNCAxMS42MDI3IDIyLjkyMSAxMS4zOCAyMi45MkMxMC45ODMxIDIyLjkyMDggMTAuNjAyMiAyMi43NjQgMTAuMzIwOSAyMi40ODRDMTAuMDM5NyAyMi4yMDQxIDkuODgxMDYgMjEuODIzOSA5Ljg4IDIxLjQyN1pNMTMuNSAxNkMxMy40OTQyIDE1LjY2NzYgMTMuNTU0OCAxNS4zMzczIDEzLjY3ODIgMTUuMDI4NkMxMy44MDE1IDE0LjcxOTggMTMuOTg1MyAxNC40Mzg4IDE0LjIxODYgMTQuMjAyQzE0LjQ1MTkgMTMuOTY1MSAxNC43MzAxIDEzLjc3NzEgMTUuMDM3IDEzLjY0OTFDMTUuMzQzOCAxMy41MjExIDE1LjY3MzEgMTMuNDU1NiAxNi4wMDU2IDEzLjQ1NjRDMTYuMzM4MSAxMy40NTcyIDE2LjY2NzEgMTMuNTI0MyAxNi45NzMzIDEzLjY1MzhDMTcuMjc5NSAxMy43ODMzIDE3LjU1NjkgMTMuOTcyNSAxNy43ODkgMTQuMjEwNUMxOC4wMjEyIDE0LjQ0ODUgMTguMjAzNiAxNC43MzA0IDE4LjMyNTUgMTUuMDM5N0MxOC40NDc0IDE1LjM0OTEgMTguNTA2NCAxNS42Nzk2IDE4LjQ5OSAxNi4wMTJDMTguNDg0NCAxNi42NjYzIDE4LjIxMzkgMTcuMjg4OCAxNy43NDU1IDE3Ljc0NThDMTcuMjc3IDE4LjIwMjggMTYuNjQ4MSAxOC40NTc5IDE1Ljk5MzYgMTguNDU2NEMxNS4zMzkyIDE4LjQ1NDggMTQuNzExNCAxOC4xOTY3IDE0LjI0NTIgMTcuNzM3NEMxMy43NzkgMTcuMjc4MSAxMy41MTE0IDE2LjY1NDMgMTMuNSAxNloiIGZpbGw9IndoaXRlIi8+JiN4YTs8L3N2Zz4=;" value="" vertex="1">
+          <mxGeometry height="32" width="32" x="90" y="59" as="geometry" />
+        </mxCell>
+        <mxCell id="oCRSUGzLXLJm876WYTdA-19" parent="dc2" style="shape=image;verticalLabelPosition=bottom;verticalAlign=top;imageAspect=0;aspect=fixed;image=data:image/svg+xml,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIiBmaWxsPSJub25lIj4mI3hhOzxwYXRoIGQ9Ik0wIDE2QzAgNy4xNjM0NCA3LjE2MzQ0IDAgMTYgMFYwQzI0LjgzNjYgMCAzMiA3LjE2MzQ0IDMyIDE2VjE2QzMyIDI0LjgzNjYgMjQuODM2NiAzMiAxNiAzMlYzMkM3LjE2MzQ0IDMyIDAgMjQuODM2NiAwIDE2VjE2WiIgZmlsbD0iIzUyODJGRiIvPiYjeGE7PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0yMiA4QzIyIDcuNCAyMS42IDcgMjEgN0gxMUMxMC40IDcgMTAgNy40IDEwIDhWMTBIMjJWOFpNMjMgMTJDMjMgMTEuNCAyMi42IDExIDIyIDExSDEwQzkuNCAxMSA5IDExLjQgOSAxMlYxNEgyM1YxMlpNOSAxNUgyM0MyMy41IDE1IDI0IDE1LjQgMjQgMTZWMjJDMjQgMjIuNiAyMy42IDIzIDIzIDIzSDlDOC40IDIzIDggMjIuNiA4IDIyVjE2QzggMTUuNCA4LjQgMTUgOSAxNVpNMTQgMjBIMThDMTguNSAyMCAxOSAxOS41IDE5IDE5QzE5IDE4LjQgMTguNiAxOCAxOCAxOEgxNEMxMy40IDE4IDEzIDE4LjQgMTMgMTlDMTMgMTkuNiAxMy40IDIwIDE0IDIwWiIgZmlsbD0id2hpdGUiLz4mI3hhOzwvc3ZnPg==;" value="" vertex="1">
+          <mxGeometry height="32" width="32" x="360" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="e_gslb_dc1" edge="1" parent="1" source="gslb" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" target="ing1" value="50%">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_gslb_dc2" edge="1" parent="1" source="gslb" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="ing2" value="50%">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_wal_ab" edge="1" parent="1" source="pg_a_leader" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;strokeColor=#d6b656;strokeWidth=2;fontSize=9;entryX=0;entryY=0.4;entryDx=0;entryDy=0;exitX=1;exitY=0.4;exitDx=0;exitDy=0;" target="pg_b_r1" value="Streaming replication WAL →">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_wal_ba" edge="1" parent="1" source="pg_b_leader" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;strokeColor=#d6b656;strokeWidth=2;fontSize=9;entryX=1;entryY=0.6;entryDx=0;entryDy=0;exitX=0;exitY=0.6;exitDx=0;exitDy=0;" target="pg_a_r1" value="← Streaming replication WAL">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="shard_block" parent="1" style="swimlane;startSize=28;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontStyle=1;rounded=1;" value="Стратегия шардирования PostgreSQL + Patroni" vertex="1">
+          <mxGeometry height="120" width="870" x="40" y="1120" as="geometry" />
+        </mxCell>
+        <mxCell id="shard_a_box" parent="shard_block" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="&lt;b&gt;Shard A (ЦОД 1)&lt;/b&gt;&lt;br/&gt;user_id % 2 == 0&lt;br/&gt;Patroni: 1 Leader + 2 Replica" vertex="1">
+          <mxGeometry height="68" width="220" x="20" y="38" as="geometry" />
+        </mxCell>
+        <mxCell id="shard_router_box" parent="shard_block" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;" value="&lt;b&gt;Shard Router&lt;/b&gt;&lt;br/&gt;hash(user_id) → shard&lt;br/&gt;Чётные → A · Нечётные → B" vertex="1">
+          <mxGeometry height="68" width="220" x="325" y="38" as="geometry" />
+        </mxCell>
+        <mxCell id="shard_b_box" parent="shard_block" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" value="&lt;b&gt;Shard B (ЦОД 2)&lt;/b&gt;&lt;br/&gt;user_id % 2 == 1&lt;br/&gt;Patroni: 1 Leader + 2 Replica" vertex="1">
+          <mxGeometry height="68" width="220" x="630" y="38" as="geometry" />
+        </mxCell>
+        <mxCell id="e_router_sa" edge="1" parent="shard_block" source="shard_router_box" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="shard_a_box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_router_sb" edge="1" parent="shard_block" source="shard_router_box" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="shard_b_box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="scale_note" parent="1" style="text;html=1;strokeColor=#9673a6;fillColor=#f3e8ff;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;overflow=hidden;fontSize=10;rounded=1;" value="&lt;b&gt;Стратегия масштабирования&lt;/b&gt;&lt;br/&gt;Горизонтальное (приоритет): HPA автоматически добавляет pod-реплики при росте CPU/RPS.&lt;br/&gt;Вертикальное (вспомогательно): VPA для БД-нод — увеличение CPU/RAM без изменения числа узлов.&lt;br/&gt;Шардирование снижает нагрузку на каждый Patroni-кластер и позволяет линейно масштабировать данные." vertex="1">
+          <mxGeometry height="74" width="870" x="40" y="1260" as="geometry" />
+        </mxCell>
+        <mxCell id="failover_note" parent="1" style="text;html=1;strokeColor=#b85450;fillColor=#f8cecc;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;overflow=hidden;fontSize=10;rounded=1;" value="&lt;b&gt;Active-Active фейловер&lt;/b&gt;&lt;br/&gt;GSLB опрашивает health-check каждые 10 с. При потере ЦОД весь трафик перенаправляется на второй за &lt; 30 с (TTL DNS = 10 с).&lt;br/&gt;Patroni автоматически избирает нового лидера в шарде при падении текущего (election timeout &lt; 10 с)." vertex="1">
+          <mxGeometry height="60" width="870" x="40" y="1350" as="geometry" />
+        </mxCell>
+        <mxCell id="oCRSUGzLXLJm876WYTdA-7" parent="1" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;aspect=fixed;imageAspect=0;image=data:image/svg+xml,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIiBmaWxsPSJub25lIj4mI3hhOzxwYXRoIGQ9Ik0xNiAzMkMyNC44MzY2IDMyIDMyIDI0LjgzNjYgMzIgMTZDMzIgNy4xNjM0NCAyNC44MzY2IDAgMTYgMEM3LjE2MzQ0IDAgMCA3LjE2MzQ0IDAgMTZDMCAyNC44MzY2IDcuMTYzNDQgMzIgMTYgMzJaIiBmaWxsPSIjNTI4MkZGIi8+JiN4YTs8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTIzLjI0NjEgMjRWMjAuMDU1N0wyMS44Nzg3IDIxLjE0NjVMMTkuMjIyOSAxNy43NTU5QzE5LjU5MTUgMTcuMjU3NiAxOS44MDk0IDE2LjY0MSAxOS44MDk0IDE1Ljk3MzZDMTkuODA5NCAxNS44NDY0IDE5LjgwMTUgMTUuNzIxMSAxOS43ODYyIDE1LjU5ODFMMjEuMzgxOCAxNC45NzkxTDIyLjAxMzIgMTYuNjI0MUwyMy45OTk1IDEzLjIzMDVMMjAuMjUyNiAxMi4wMzc2TDIwLjg4IDEzLjY3MjFMMTkuMjkxNyAxNC4yODgzQzE4Ljc1MTkgMTMuNDk0OCAxNy44NDE1IDEyLjk3MzYgMTYuODA5NCAxMi45NzM2QzE2Ljc2NzggMTIuOTczNiAxNi43MjY0IDEyLjk3NDQgMTYuNjg1MiAxMi45NzYxTDE1LjkzNyAxMC43MDgyTDE3LjYyMDUgMTAuMTYxMkwxNC4zMzU0IDhMMTIuOTQ4MSAxMS42NzkzTDE0LjYwNTUgMTEuMTQwOEwxNS4zMzc1IDEzLjM1ODlDMTQuNjI3IDEzLjc1OTcgMTQuMDk2MyAxNC40NDE4IDEzLjg5NjMgMTUuMjUzOUwxMy44OTY2IDE1LjI1MjhMMTEuODcxMiAxNS4yNTI0QzExLjU4NzQgMTQuNDk0MSAxMC44NTYyIDEzLjk1NDMgOS45OTg5IDEzLjk1NDNDOC44OTUyMSAxMy45NTQzIDguMDAwNDkgMTQuODQ5IDguMDAwNDkgMTUuOTUyN0M4LjAwMDQ5IDE3LjA1NjQgOC44OTUyMSAxNy45NTExIDkuOTk4OSAxNy45NTExQzEwLjg1NjQgMTcuOTUxMSAxMS41ODc4IDE3LjQxMSAxMS44NzE0IDE2LjY1MjRMMTMuODg2NiAxNi42NTI4QzE0LjA0MDcgMTcuMzE4OSAxNC40MTY2IDE3Ljg5OTcgMTQuOTMyMyAxOC4zMTM5TDE0LjkzMTQgMTguMzEzM0wxNC4wMjkyIDIwLjA4MTFMMTIuNDczNiAxOS4yODU5TDEzLjI2MzEgMjMuMTM4TDE2Ljg0OCAyMS41MjIxTDE1LjI3NTggMjAuNzE4NEwxNi4xOTggMTguOTExM0wxNi4xOTcgMTguOTExMUMxNi4zOTQ3IDE4Ljk1MjEgMTYuNTk5NiAxOC45NzM2IDE2LjgwOTQgMTguOTczNkMxNy4yOTE2IDE4Ljk3MzYgMTcuNzQ3MiAxOC44NTk4IDE4LjE1MDkgMTguNjU3N0wyMC43ODQyIDIyLjAxOTVMMTkuNDA1NSAyMy4xMTkzTDIzLjI0NjEgMjRaTTE2LjgwOTQgMTQuMzczNkMxNy42OTMxIDE0LjM3MzYgMTguNDA5NCAxNS4wODk5IDE4LjQwOTQgMTUuOTczNkMxOC40MDk0IDE2Ljg1NzMgMTcuNjkzMSAxNy41NzM2IDE2LjgwOTQgMTcuNTczNkMxNS45MjU4IDE3LjU3MzYgMTUuMjA5NCAxNi44NTczIDE1LjIwOTQgMTUuOTczNkMxNS4yMDk0IDE1LjA4OTkgMTUuOTI1OCAxNC4zNzM2IDE2LjgwOTQgMTQuMzczNloiIGZpbGw9IndoaXRlIi8+JiN4YTs8L3N2Zz4=;" value="" vertex="1">
+          <mxGeometry height="32" width="32" x="680" y="198" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
